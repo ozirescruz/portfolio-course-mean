@@ -1,12 +1,11 @@
-// mongodb user: ozires password: Dc1AB2sZODcpV1n0
-
 const express = require("express");
 const bodyParser = require("body-parser");
 const db = require("mongoose");
+const postsRouter = require("./routes/post");
 
 db.connect(
   "mongodb+srv://ozires:Dc1AB2sZODcpV1n0@cluster0.qts0q.mongodb.net/angular-mean?retryWrites=true&w=majority",
-  { useUnifiedTopology: true }
+  { useUnifiedTopology: true, useNewUrlParser: true }
 )
   .then(() => {
     console.log("DB up and running!");
@@ -14,8 +13,6 @@ db.connect(
   .catch(() => {
     console.log("Error connecting DB!");
   });
-
-const Post = require("./models/post");
 
 const app = express();
 
@@ -35,34 +32,6 @@ app.use((req, res, next) => {
   next();
 });
 
-app.post("/api/posts", (req, res, next) => {
-  const post = new Post({
-    title: req.body.title,
-    content: req.body.content,
-  });
-
-  post.save().then((result) => {
-    res.status(201).json({
-      message: "Post added successfully",
-      id: result._id,
-    });
-  });
-});
-
-app.get("/api/posts", (req, res, next) => {
-  Post.find().then((posts) => {
-    res.status(200).json({
-      message: "Posts fetched successfully!",
-      posts: posts,
-    });
-  });
-});
-
-app.delete("/api/posts/:id", (req, res, next) => {
-  Post.deleteOne({ _id: req.params.id }).then((response) => {
-    console.log(response);
-    res.status(200).json({ message: "Post delete!" });
-  });
-});
+app.use("/api/posts", postsRouter);
 
 module.exports = app;

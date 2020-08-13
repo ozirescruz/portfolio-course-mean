@@ -3,6 +3,7 @@ import { Subscription } from "rxjs";
 
 import { Post } from "../post.model";
 import { PostsService } from "../posts.service";
+import { Router } from "@angular/router";
 
 @Component({
   selector: "app-post-list",
@@ -28,7 +29,7 @@ export class PostListComponent implements OnInit, OnDestroy {
     this.postsSub.unsubscribe();
   }
 
-  delete(id) {
+  delete(id: string) {
     this.postsService.deletePost(id);
   }
 }

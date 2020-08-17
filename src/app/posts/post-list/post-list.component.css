@@ -8,6 +8,10 @@
 }
 
 .post-image img {
-  width: 50%;
+  width: 25%;
   box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
+}
+
+mat-paginator {
+  margin-top: 20px;
 }

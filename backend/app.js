@@ -2,7 +2,9 @@ const path = require("path");
 const express = require("express");
 const bodyParser = require("body-parser");
 const db = require("mongoose");
+
 const postsRouter = require("./routes/post");
+const usersRouter = require("./routes/user");
 
 db.connect(
   "mongodb+srv://ozires:Dc1AB2sZODcpV1n0@cluster0.qts0q.mongodb.net/angular-mean?retryWrites=true&w=majority",
@@ -35,5 +37,6 @@ app.use((req, res, next) => {
 });
 
 app.use("/api/posts", postsRouter);
+app.use("/api/users", usersRouter);
 
 module.exports = app;

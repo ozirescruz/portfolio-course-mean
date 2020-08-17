@@ -4,8 +4,24 @@
   <ul>
     <li>
       <a mat-button [routerLink]="['/create']" routerLinkActive="mat-accent"
-        >New Post</a
+        ><mat-icon aria-hidden="false" aria-label="Example home icon"
+          >playlist_add</mat-icon
+        ></a
       >
+    </li>
+    <li>
+      <a mat-button [routerLink]="['/login']" routerLinkActive="mat-accent"
+        ><mat-icon aria-hidden="false" aria-label="Example home icon"
+          >meeting_room</mat-icon
+        >
+      </a>
+    </li>
+    <li>
+      <a mat-button [routerLink]="['/signup']" routerLinkActive="mat-accent"
+        ><mat-icon aria-hidden="false" aria-label="Example home icon"
+          >person_add</mat-icon
+        >
+      </a>
     </li>
   </ul>
 </mat-toolbar>

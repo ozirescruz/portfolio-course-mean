@@ -2,26 +2,33 @@
   <span><a [routerLink]="['/']">My Messages</a></span>
   <span class="spacer"></span>
   <ul>
-    <li>
+    <li *ngIf="isLoggedin$ | async as loggedin">
       <a mat-button [routerLink]="['/create']" routerLinkActive="mat-accent"
         ><mat-icon aria-hidden="false" aria-label="Example home icon"
           >playlist_add</mat-icon
         ></a
       >
     </li>
-    <li>
+    <li *ngIf="isLoggedout$ | async as loggedout">
+      <a mat-button [routerLink]="['/signup']" routerLinkActive="mat-accent"
+        ><mat-icon aria-hidden="false" aria-label="Example home icon"
+          >person_add</mat-icon
+        >
+      </a>
+    </li>
+    <li *ngIf="isLoggedout$ | async as loggedout">
       <a mat-button [routerLink]="['/login']" routerLinkActive="mat-accent"
         ><mat-icon aria-hidden="false" aria-label="Example home icon"
           >meeting_room</mat-icon
         >
       </a>
     </li>
-    <li>
-      <a mat-button [routerLink]="['/signup']" routerLinkActive="mat-accent"
-        ><mat-icon aria-hidden="false" aria-label="Example home icon"
-          >person_add</mat-icon
+    <li *ngIf="isLoggedin$ | async as loggedin">
+      <button mat-button (click)="logout()">
+        <mat-icon aria-hidden="false" aria-label="Example home icon"
+          >no_meeting_room</mat-icon
         >
-      </a>
+      </button>
     </li>
   </ul>
 </mat-toolbar>

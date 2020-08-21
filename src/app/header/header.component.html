@@ -10,14 +10,17 @@
       >
     </li>
     <li *ngIf="isLoggedout$ | async as loggedout">
-      <a mat-button [routerLink]="['/signup']" routerLinkActive="mat-accent"
+      <a
+        mat-button
+        [routerLink]="['/auth/signup']"
+        routerLinkActive="mat-accent"
         ><mat-icon aria-hidden="false" aria-label="Example home icon"
           >person_add</mat-icon
         >
       </a>
     </li>
     <li *ngIf="isLoggedout$ | async as loggedout">
-      <a mat-button [routerLink]="['/login']" routerLinkActive="mat-accent"
+      <a mat-button [routerLink]="['/auth/login']" routerLinkActive="mat-accent"
         ><mat-icon aria-hidden="false" aria-label="Example home icon"
           >meeting_room</mat-icon
         >

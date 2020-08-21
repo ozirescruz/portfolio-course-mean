@@ -5,6 +5,7 @@ import { PostsService } from "../posts.service";
 import { ActivatedRoute, ParamMap } from "@angular/router";
 import { Post } from "../post.model";
 import { mimeType } from "./mime-type.validator";
+import { AuthService } from "src/app/auth/auth.service";
 
 @Component({
   selector: "app-post-create",
@@ -32,7 +33,8 @@ export class PostCreateComponent implements OnInit {
 
   constructor(
     public postsService: PostsService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private authService: AuthService
   ) {}
 
   ngOnInit(): void {
@@ -46,6 +48,7 @@ export class PostCreateComponent implements OnInit {
             title: post.title,
             content: post.content,
             imagePath: post.imagePath,
+            creator: this.authService.getUserid(),
           };
 
           this.form.setValue({
@@ -62,6 +65,7 @@ export class PostCreateComponent implements OnInit {
           title: "",
           content: "",
           imagePath: "",
+          creator: "",
         };
       }
     });

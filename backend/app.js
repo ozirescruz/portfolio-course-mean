@@ -7,7 +7,9 @@ const postsRouter = require("./routes/post");
 const usersRouter = require("./routes/user");
 
 db.connect(
-  "mongodb+srv://ozires:Dc1AB2sZODcpV1n0@cluster0.qts0q.mongodb.net/angular-mean?retryWrites=true&w=majority",
+  "mongodb+srv://ozires:" +
+    process.env.MONGO_ATLAS_PW +
+    "@cluster0.qts0q.mongodb.net/angular-mean?retryWrites=true&w=majority",
   { useUnifiedTopology: true, useNewUrlParser: true }
 )
   .then(() => {

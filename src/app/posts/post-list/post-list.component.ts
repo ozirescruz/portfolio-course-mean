@@ -4,6 +4,7 @@ import { PageEvent } from "@angular/material/paginator";
 
 import { Post } from "../post.model";
 import { PostsService } from "../posts.service";
+import { AuthService } from "src/app/auth/auth.service";
 
 @Component({
   selector: "app-post-list",
@@ -17,10 +18,16 @@ export class PostListComponent implements OnInit, OnDestroy {
   postsPerPage = 2;
   pageSizeOptions = [1, 2, 6];
   currentPage = 1;
+  userId: string;
 
-  constructor(public postsService: PostsService) {}
+  constructor(
+    public postsService: PostsService,
+    private authService: AuthService
+  ) {}
 
   ngOnInit() {
+    this.userId = this.authService.getUserid();
+
     this.postsService.getPosts(
       this.postsPerPage.toString(),
       this.currentPage.toString()
